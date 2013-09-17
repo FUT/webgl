@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  def index
-
+  def scene
+    binding.pry
   end
 end
