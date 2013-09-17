@@ -1,2 +1,3 @@
 ol
-  li = link_to 'Simple shapes', simple_shapes_home_path
+  - %w{simple_shapes}.each do |scene|
+    li = link_to scene.humanize, scene

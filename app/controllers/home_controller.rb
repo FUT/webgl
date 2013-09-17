@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def scene
-    binding.pry
+    @scene = params[:scene]
   end
 end
