@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+
+//= require webgl/gl-matrix
+//= require webgl/webgl-debug
+
+//= require webgl/gl-util

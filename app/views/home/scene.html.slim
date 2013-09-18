@@ -1,8 +1,9 @@
-= javascript_include_tag @scene
+= render "shader/#{@scene}"
+= javascript_include_tag "scene/#{@scene}"
 
 h1 = @scene.humanize.capitalize
 
-canvas
+canvas id='canvas'
   Your browser does not support webgl
 
 h4 = link_to 'Go home', root_path
