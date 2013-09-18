@@ -1,15 +1,7 @@
 $ ->
 
   glUtil = new GLUtil ->
-    @gl.clearColor 0.0, 0.0, 0.0, 1.0
-    @gl.enable @gl.DEPTH_TEST
-
-    @gl.viewport 0, 0, @gl.viewportWidth, @gl.viewportHeight
-    @gl.clear @gl.COLOR_BUFFER_BIT | @gl.DEPTH_BUFFER_BIT
-
-    mat4.perspective @pMatrix, 45, @gl.viewportWidth / @gl.viewportHeight, 0.1, 100.0
-    mat4.identity @mvMatrix
-    mat4.translate @mvMatrix, @mvMatrix, [-1.5, 0.0, -7.0]
+    @initScene()
 
     for name in ['triangle', 'square']
       vertexBuffer = @buffers["#{name}_position"]

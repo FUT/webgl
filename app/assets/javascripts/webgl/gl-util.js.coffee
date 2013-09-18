@@ -81,3 +81,15 @@ class window.GLUtil
     vertexPositionBuffer.numItems = options.data.length / options.itemSize
     @buffers[options.name] = vertexPositionBuffer
     console.log "Buffer #{options.name} was initialized"
+
+  initScene: ->
+    @gl.clearColor 0.0, 0.0, 0.0, 1.0
+    @gl.enable @gl.DEPTH_TEST
+
+    @gl.viewport 0, 0, @gl.viewportWidth, @gl.viewportHeight
+    @gl.clear @gl.COLOR_BUFFER_BIT | @gl.DEPTH_BUFFER_BIT
+
+    mat4.perspective @pMatrix, 45, @gl.viewportWidth / @gl.viewportHeight, 0.1, 100.0
+    mat4.identity @mvMatrix
+    mat4.translate @mvMatrix, @mvMatrix, [-1.5, 0.0, -12.0]
+
