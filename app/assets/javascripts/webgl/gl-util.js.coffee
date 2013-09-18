@@ -88,9 +88,10 @@ class window.GLUtil
     mat4.translate @mvMatrix, @mvMatrix, [-1.5, 0.0, -12.0]
 
   tick: ->
-    requestAnimationFrame @tick
-    @drawScene()
-    @animate()
+    that = if (this == window) then window.glUtil else this
+    requestAnimationFrame that.tick
+    that.drawScene()
+    that.animate()
 
   constructor: (functions) ->
     @initCanvas()

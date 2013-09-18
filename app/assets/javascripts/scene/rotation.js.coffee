@@ -1,7 +1,7 @@
 $ ->
   rad = 0
 
-  new GLUtil
+  window.glUtil = new GLUtil
     drawScene: ->
       @initScene()
 
@@ -26,7 +26,7 @@ $ ->
         mat4.translate @mvMatrix, @mvMatrix, [3.0, 0.0, 0.0]
 
     animate: ->
-      rad += 0.01
+      rad += 0.03
 
     initBuffers: ->
       @initBuffer name: 'triangle_position', itemSize: 3, data: [0.0, 1.0, 0.0, -1.0, -1.0, 0.0, 1.0, -1.0, 0.0]
