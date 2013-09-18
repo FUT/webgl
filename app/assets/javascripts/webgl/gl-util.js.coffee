@@ -25,12 +25,6 @@ class window.GLUtil
       @gl.viewportHeight = @canvas.height
     alert "Could not initialise WebGL, sorry :-("  unless @gl
 
-  constructor: (@drawScene) ->
-    @initCanvas()
-    @initGL()
-    @initShaders()
-    console.log 'GLUtil was initialized', @
-
   getShader: (id) ->
     shaderScript = document.getElementById(id)
     console.log("[ERROR] No shader script with id #{id} found") unless shaderScript
@@ -92,3 +86,22 @@ class window.GLUtil
     mat4.perspective @pMatrix, 45, @gl.viewportWidth / @gl.viewportHeight, 0.1, 100.0
     mat4.identity @mvMatrix
     mat4.translate @mvMatrix, @mvMatrix, [-1.5, 0.0, -12.0]
+
+  tick: ->
+    requestAnimationFrame @tick
+    @drawScene()
+    @animate()
+
+  constructor: (functions) ->
+    @initCanvas()
+    @initGL()
+    @initShaders()
+
+    for own name, func of functions
+      @[name] = func
+
+    @initBuffers()
+    @tick()
+    console.log 'GLUtil was initialized', @
+
+
