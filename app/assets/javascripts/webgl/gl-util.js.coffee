@@ -6,7 +6,10 @@ class window.GLUtil
   triangleVertexPositionBuffer: undefined
   squareVertexPositionBuffer: undefined
   canvas: undefined
-  verticesBuffers: {}
+  buffers: {
+    position: {}
+    color: {}
+  }
 
   initCanvas: ->
     @canvas = document.getElementById 'canvas'
@@ -56,8 +59,12 @@ class window.GLUtil
     @gl.linkProgram @shaderProgram
     alert "Could not initialise shaders"  unless @gl.getProgramParameter(@shaderProgram, @gl.LINK_STATUS)
     @gl.useProgram @shaderProgram
+
     @shaderProgram.vertexPositionAttribute = @gl.getAttribLocation(@shaderProgram, "aVertexPosition")
     @gl.enableVertexAttribArray @shaderProgram.vertexPositionAttribute
+    @shaderProgram.vertexColorAttribute = @gl.getAttribLocation(@shaderProgram, "aVertexColor")
+    @gl.enableVertexAttribArray @shaderProgram.vertexColorAttribute
+
     @shaderProgram.pMatrixUniform = @gl.getUniformLocation(@shaderProgram, "uPMatrix")
     @shaderProgram.mvMatrixUniform = @gl.getUniformLocation(@shaderProgram, "uMVMatrix")
     console.log 'Shader initialization finished'
@@ -66,11 +73,11 @@ class window.GLUtil
     @gl.uniformMatrix4fv @shaderProgram.pMatrixUniform, false, @pMatrix
     @gl.uniformMatrix4fv @shaderProgram.mvMatrixUniform, false, @mvMatrix
 
-  initBuffer: (name, vertices) ->
+  initBuffer: (options) ->
     vertexPositionBuffer = @gl.createBuffer()
     @gl.bindBuffer @gl.ARRAY_BUFFER, vertexPositionBuffer
-    @gl.bufferData @gl.ARRAY_BUFFER, new Float32Array(vertices), @gl.STATIC_DRAW
-    vertexPositionBuffer.itemSize = 3
-    vertexPositionBuffer.numItems = vertices.length / vertexPositionBuffer.itemSize
-    @verticesBuffers[name] = vertexPositionBuffer
-    console.log "Buffer #{name} was initialized"
+    @gl.bufferData @gl.ARRAY_BUFFER, new Float32Array(options.data), @gl.STATIC_DRAW
+    vertexPositionBuffer.itemSize = options.itemSize
+    vertexPositionBuffer.numItems = options.data.length / options.itemSize
+    @buffers[options.name] = vertexPositionBuffer
+    console.log "Buffer #{options.name} was initialized"
