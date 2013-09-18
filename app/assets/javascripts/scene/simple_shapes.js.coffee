@@ -22,4 +22,6 @@ $ ->
   glUtil.initBuffer 'triangle', [0.0, 1.0, 0.0, -1.0, -1.0, 0.0, 1.0, -1.0, 0.0]
   glUtil.initBuffer 'square', [1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, -1.0, -1.0, 0.0]
 
-  glUtil.drawScene()
+  setTimeout =>
+    glUtil.drawScene()
+  , 1000
