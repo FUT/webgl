@@ -92,4 +92,3 @@ class window.GLUtil
     mat4.perspective @pMatrix, 45, @gl.viewportWidth / @gl.viewportHeight, 0.1, 100.0
     mat4.identity @mvMatrix
     mat4.translate @mvMatrix, @mvMatrix, [-1.5, 0.0, -12.0]
-

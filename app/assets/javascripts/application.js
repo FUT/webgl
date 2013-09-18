@@ -16,4 +16,5 @@
 //= require webgl/gl-matrix
 //= require webgl/webgl-debug
 
+//= require webgl/stack
 //= require webgl/gl-util
