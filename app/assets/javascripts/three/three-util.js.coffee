@@ -1,11 +1,5 @@
 class window.ThreeUtil
 
-  tick: ->
-    that = if (this == window) then window.glUtil else this
-    requestAnimationFrame that.tick
-    that.drawScene()
-    that.animate()
-
   createRenderer: (options) ->
     options.renderer ||= {}
 
@@ -25,21 +19,36 @@ class window.ThreeUtil
   createCamera: (options) ->
     # Set default options
     cam = options.camera || {}
-    pos = options.position || {}
 
     cam.angle  ||= 45
     cam.aspect ||= @container.offsetWidth / @container.offsetHeight
     cam.min    ||= 1
     cam.max    ||= 4000
 
-    pos.x      ||= 0
-    pos.y      ||= 0
-    pos.z      ||= 3
+    cam.x      ||= 0
+    cam.y      ||= 0
+    cam.z      ||= 3
 
     # Create a camera and add it to the scene
     @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
-    @camera.position.set pos.x, pos.y, pos.z
+    @camera.position.set cam.x, cam.y, cam.z
     @scene.add @camera
+
+  createLight: (options) ->
+    light = options.light || {}
+
+    light.color     || = 0xffffff
+    light.intensity || = 1.5
+
+    light.x         || = 0
+    light.y         || = 0
+    light.z         || = 1
+
+    # Create a directional light to show off the object
+    @light = new THREE.DirectionalLight light.color, light.intensity
+    @light.position.set light.x, light.y, light.z
+    @scene.add @light
+
 
   render: ->
     # Render it
@@ -48,6 +57,9 @@ class window.ThreeUtil
   constructor: (options) ->
     options ||= {}
 
+    @run = options.run
+
     @createRenderer(options)
     @createScene(options)
     @createCamera(options)
+    @createLight(options)
