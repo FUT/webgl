@@ -7,7 +7,7 @@ $ ->
   material = new THREE.MeshPhongMaterial({ map: map })
 
   # Create the cube geometry
-  geometry = new THREE.CubeGeometry(1, 1, 1)
+  geometry = new THREE.SphereGeometry(1, 50, 50)
 
   # And put the geometry and material together into a mesh
   cube = new THREE.Mesh(geometry, material)
