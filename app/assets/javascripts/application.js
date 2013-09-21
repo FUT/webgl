@@ -13,8 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require webgl/gl-matrix
-//= require webgl/webgl-debug
-
-//= require webgl/stack
-//= require webgl/gl-util
+//= require three/three
+//= require three/three-util
