@@ -23,7 +23,7 @@
 	"colorDiffuse" : [0.3058823529411765, 0.2784313725490196, 0.27058823529411763],
 	"colorSpecular" : [1.0, 1.0, 1.0],
 	"illumination" : 2,
-	"mapDiffuse" : "BEAR_BK.TIF",
+	"mapDiffuse" : "fur.jpg",
 	"specularCoef" : 47.0,
 	"transparency" : 1.0
 	},

@@ -8,6 +8,8 @@ class window.ThreeUtil
     # Create the Three.js renderer, add it to our div
     @renderer = new THREE.WebGLRenderer(options.renderer)
     @renderer.setSize @container.offsetWidth, @container.offsetHeight
+    @renderer.setClearColorHex 0xaaaaaa, 1
+
     @container.appendChild @renderer.domElement
 
   createScene: (options) ->

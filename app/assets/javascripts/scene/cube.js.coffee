@@ -1,10 +1,10 @@
 $ ->
   # Create a shaded, texture-mapped cube and add it to the scene
   # First, create the texture map
-  map = THREE.ImageUtils.loadTexture('/assets/rails.png')
+  map = THREE.ImageUtils.loadTexture('/assets/fur4.jpg')
 
   # Now, create a Phong material to show shading; pass in the map
-  material = new THREE.MeshPhongMaterial({ map: map })
+  material = new THREE.MeshLambertMaterial({ map: map })
 
   # Create the cube geometry
   geometry = new THREE.SphereGeometry(2, 50, 50)
@@ -17,7 +17,8 @@ $ ->
     renderer:
       antialias: true
     light:
-      z: 20
+      z: 2
+      intencity: 140
     camera:
       z: 20
     run: ->
@@ -27,8 +28,8 @@ $ ->
       requestAnimationFrame threeUtil.run
 
   jsonLoader = new THREE.JSONLoader()
-  jsonLoader.load 'model/black_bear/black_bear.js', (geometries) ->
-    window.bear = new THREE.Mesh(geometries, material)
+  jsonLoader.load 'model/black_bear/black_bear.js', (geometries, materials) ->
+    window.bear = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
     window.bear.position.set 0, 0, 0
     window.bear.scale.set 3, 3, 3
     window.bear.rotation.y = Math.PI / 5
