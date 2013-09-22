@@ -7,21 +7,33 @@ $ ->
   material = new THREE.MeshPhongMaterial({ map: map })
 
   # Create the cube geometry
-  geometry = new THREE.SphereGeometry(1, 50, 50)
+  geometry = new THREE.SphereGeometry(2, 50, 50)
 
   # And put the geometry and material together into a mesh
   cube = new THREE.Mesh(geometry, material)
-  cube.rotation.x = Math.PI / 5
-  cube.rotation.y = Math.PI / 5
+  cube.position.y = -1.7
 
   threeUtil = new ThreeUtil
     renderer:
       antialias: true
+    light:
+      z: 20
+    camera:
+      z: 20
     run: ->
       threeUtil.render()
-      cube.rotation.y -= 0.01
-      cube.rotation.x -= 0.005
+      window.bear.rotation.y -= -0.01 if window.bear
+      cube.rotation.y -= -0.01 if window.bear
       requestAnimationFrame threeUtil.run
+
+  jsonLoader = new THREE.JSONLoader()
+  jsonLoader.load 'model/black_bear/black_bear.js', (geometries) ->
+    window.bear = new THREE.Mesh(geometries, material)
+    window.bear.position.set 0, 0, 0
+    window.bear.scale.set 3, 3, 3
+    window.bear.rotation.y = Math.PI / 5
+    window.bear.overdraw = true
+    threeUtil.scene.add window.bear
 
   threeUtil.scene.add cube
 
