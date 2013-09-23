@@ -8,7 +8,8 @@ class window.ThreeUtil
     # Create the Three.js renderer, add it to our div
     @renderer = new THREE.WebGLRenderer(options.renderer)
     @renderer.setSize @container.offsetWidth, @container.offsetHeight
-    @renderer.setClearColorHex 0xaaaaaa, 1
+    @renderer.setClearColor 0xaaaaaa, 1
+    @renderer.shadowMapSoft = true
 
     @container.appendChild @renderer.domElement
 
@@ -34,6 +35,8 @@ class window.ThreeUtil
     # Create a camera and add it to the scene
     @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     @camera.position.set cam.x, cam.y, cam.z
+
+    @camera.lookAt({ x: 0, y: 0, z: 0 })
     @scene.add @camera
 
   createLight: (options) ->
@@ -49,6 +52,15 @@ class window.ThreeUtil
     # Create a directional light to show off the object
     @light = new THREE.DirectionalLight light.color, light.intensity
     @light.position.set light.x, light.y, light.z
+    @light.castShadow = true
+    @light.shadowDarkness = 0.5
+    @light.shadowCameraVisible = true
+
+    @light.shadowCameraRight    =  5
+    @light.shadowCameraLeft     = -5
+    @light.shadowCameraTop      =  5
+    @light.shadowCameraBottom   = -5
+
     @scene.add @light
 
 

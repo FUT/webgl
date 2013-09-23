@@ -17,25 +17,48 @@ $ ->
     renderer:
       antialias: true
     light:
-      z: 2
-      intencity: 140
+      z: 10
+      x: 2
+      y: 10
+      intensity: 1.5
     camera:
       z: 20
+      y: 20
     run: ->
       threeUtil.render()
-      window.bear.rotation.y -= -0.01 if window.bear
-      cube.rotation.y -= -0.01 if window.bear
+      group.rotation.y -= -0.01
       requestAnimationFrame threeUtil.run
+
+
+  window.group=new THREE.Object3D()
+
+  groundMaterial = new THREE.MeshPhongMaterial({ color: 0x6C6C6C })
+  plane = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), groundMaterial)
+  plane.rotation.x = -Math.PI / 2
+  plane.receiveShadow = true
+  group.add plane
+
 
   jsonLoader = new THREE.JSONLoader()
   jsonLoader.load 'model/black_bear/black_bear.js', (geometries, materials) ->
     window.bear = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
-    window.bear.position.set 0, 0, 0
-    window.bear.scale.set 3, 3, 3
-    window.bear.rotation.y = Math.PI / 5
-    window.bear.overdraw = true
-    threeUtil.scene.add window.bear
+    bear.position.set 0, 0, 0
+    bear.scale.set 3, 3, 3
+    bear.overdraw = true
+    bear.castShadow = true
+    bear.receiveShadow = true
+    group.add bear
 
-  threeUtil.scene.add cube
+  jsonLoader.load 'model/rings/rings.js', (geometries, materials) ->
+    window.rings = new THREE.Mesh(geometries, new THREE.MeshFaceMaterial(materials))
+    rings.position.set 0, 2.8, 2.0
+    rings.scale.set 0.01, 0.01, 0.01
+    rings.overdraw = true
+    rings.castShadow = true
+    rings.receiveShadow = true
+    group.add rings
+
+  # group.rotation.y = Math.PI / 2
+  threeUtil.scene.add group
 
   threeUtil.run()
