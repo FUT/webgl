@@ -22,7 +22,7 @@ $ ->
       y: 10
       intensity: 1.5
     camera:
-      z: 20
+      z: 30
       y: 20
     run: ->
       threeUtil.render()
@@ -57,6 +57,21 @@ $ ->
     rings.castShadow = true
     rings.receiveShadow = true
     group.add rings
+
+  baloonMaterial = new THREE.MeshLambertMaterial({
+    map: THREE.ImageUtils.loadTexture('model/baloons/fur.jpg')
+  })
+
+  jsonLoader.load 'model/baloons/baloons.js', (geometries, materials) ->
+    window.baloons = new THREE.Mesh(geometries, baloonMaterial)
+    baloons.position.set 0, 6, 0
+    baloons.scale.set 0.13, 0.13, 0.13
+    baloons.overdraw = true
+    baloons.castShadow = true
+    baloons.receiveShadow = true
+    baloons.rotation.x = - Math.PI / 2
+    group.add baloons
+
 
   # group.rotation.y = Math.PI / 2
   threeUtil.scene.add group
