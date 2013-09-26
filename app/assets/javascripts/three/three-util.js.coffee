@@ -36,7 +36,7 @@ class window.ThreeUtil
     @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     @camera.position.set cam.x, cam.y, cam.z
 
-    @camera.lookAt({ x: 0, y: 0, z: 0 })
+    @camera.lookAt({ x: 0, y: 10, z: 0 })
     @scene.add @camera
 
   createLight: (options) ->

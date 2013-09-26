@@ -14,4 +14,8 @@
 //= require jquery_ujs
 
 //= require three/three
+//= require three/MTLLoader
+//= require three/OBJMTLLoader
 //= require three/three-util
+//= require scene/bear
+//= require scene/forest
