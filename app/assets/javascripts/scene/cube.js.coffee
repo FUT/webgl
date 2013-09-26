@@ -10,7 +10,7 @@ $ ->
     renderer:
       antialias: true
     light:
-      z: 100
+      z: 40
       x: 20
       y: 60
       intensity: 1.5

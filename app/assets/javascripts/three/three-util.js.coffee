@@ -9,7 +9,8 @@ class window.ThreeUtil
     @renderer = new THREE.WebGLRenderer(options.renderer)
     @renderer.setSize @container.offsetWidth, @container.offsetHeight
     @renderer.setClearColor 0xccdcec, 1
-    @renderer.shadowMapSoft = true
+    @renderer.shadowMapEnabled = true
+    # @renderer.shadowMapSoft = true
 
     @container.appendChild @renderer.domElement
 
@@ -58,10 +59,13 @@ class window.ThreeUtil
     @light.shadowDarkness = 0.5
     @light.shadowCameraVisible = true
 
-    @light.shadowCameraRight    =  5
-    @light.shadowCameraLeft     = -5
-    @light.shadowCameraTop      =  5
-    @light.shadowCameraBottom   = -5
+    aspect = @container.offsetWidth / @container.offsetHeight
+    shadowWidth = 30
+    # @camera = new THREE.OrthographicCamera( -edgeLen*cam.aspect, edgeLen*cam.aspect, edgeLen, -edgeLen, 1, 1000 )
+    @light.shadowCameraRight    =  shadowWidth * aspect
+    @light.shadowCameraLeft     = -shadowWidth * aspect
+    @light.shadowCameraTop      =  shadowWidth
+    @light.shadowCameraBottom   = -shadowWidth
 
     @scene.add @light
 

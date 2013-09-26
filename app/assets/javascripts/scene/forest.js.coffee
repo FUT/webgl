@@ -8,6 +8,8 @@ omLoader.load 'model/spruce/spruce.obj', 'model/spruce/spruce.mtl', (spruce) ->
     newspruce = spruce.clone()
     newspruce.position.set (Math.random()*planeSizeX - planeSizeX/2)*0.9, 0, (Math.random()*planeSizeY*0.9- planeSizeY/2)*0.9
     newspruce.rotation.y = Math.random() * 100
+    newspruce.castShadow = true
+    newspruce.receiveShadow = true
 
     scale = Math.random() * 0.03 + 0.01
     newspruce.scale.set scale, scale, scale
@@ -22,6 +24,7 @@ map = THREE.ImageUtils.loadTexture('/assets/grass.jpg')
 groundMaterial = new THREE.MeshLambertMaterial({ map: map })
 window.planeSizeX = 70
 window.planeSizeY = 50
+
 plane = new THREE.Mesh(new THREE.PlaneGeometry(planeSizeX, planeSizeY), groundMaterial)
 plane.rotation.x = -Math.PI / 2
 plane.receiveShadow = true
