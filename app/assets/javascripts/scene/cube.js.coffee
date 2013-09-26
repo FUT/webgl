@@ -1,22 +1,10 @@
 $ ->
-  # Create a shaded, texture-mapped cube and add it to the scene
-  # First, create the texture map
-  map = THREE.ImageUtils.loadTexture('/assets/fur4.jpg')
-
-  # Now, create a Phong material to show shading; pass in the map
-  material = new THREE.MeshLambertMaterial({ map: map })
-
-  # Create the cube geometry
-  geometry = new THREE.SphereGeometry(2, 50, 50)
-
-  # And put the geometry and material together into a mesh
-  cube = new THREE.Mesh(geometry, material)
-  cube.position.y = -1.7
-
   window.angleY = 0
   window.angleX = 0
+  window.angleZ = 0
   window.widthX = 20
   window.widthY = 5
+  window.widthZ = 20
 
   threeUtil = new ThreeUtil
     renderer:
@@ -34,9 +22,11 @@ $ ->
       threeUtil.render()
       angleY += 0.01
       angleX += 0.003
+      angleZ += 0.004
       bearGroup.position.y = Math.sin(angleY) * widthY + 14
       bearGroup.position.x = Math.sin(angleX) * widthX
-      # sceneGroup.rotation.y -= -0.01
+      bearGroup.position.z = Math.sin(angleZ) * widthZ
+      sceneGroup.rotation.y -= -0.01
       requestAnimationFrame threeUtil.run
 
   window.sceneGroup  = new THREE.Object3D()
