@@ -15,28 +15,32 @@ $ ->
 
   window.angleY = 0
   window.angleX = 0
+  window.widthX = 20
+  window.widthY = 5
 
   threeUtil = new ThreeUtil
     renderer:
       antialias: true
     light:
-      z: 10
-      x: 2
-      y: 10
+      z: 100
+      x: 20
+      y: 60
       intensity: 1.5
     camera:
       z: 50
       y: 20
     run: ->
       threeUtil.render()
-      angleY += 0.1
-      angleX += 0.03
-      bearGroup.position.y = Math.sin(angleY) * 5 + 14
-      bearGroup.position.x = Math.sin(angleX) * 5
+      angleY += 0.01
+      angleX += 0.003
+      bearGroup.position.y = Math.sin(angleY) * widthY + 14
+      bearGroup.position.x = Math.sin(angleX) * widthX
       # sceneGroup.rotation.y -= -0.01
       requestAnimationFrame threeUtil.run
 
   window.sceneGroup  = new THREE.Object3D()
+
+  bearGroup.position.z = -10
 
   sceneGroup.add forestGroup
   sceneGroup.add bearGroup

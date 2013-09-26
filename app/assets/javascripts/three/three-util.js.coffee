@@ -8,7 +8,7 @@ class window.ThreeUtil
     # Create the Three.js renderer, add it to our div
     @renderer = new THREE.WebGLRenderer(options.renderer)
     @renderer.setSize @container.offsetWidth, @container.offsetHeight
-    @renderer.setClearColor 0xcccccc, 1
+    @renderer.setClearColor 0xccdcec, 1
     @renderer.shadowMapSoft = true
 
     @container.appendChild @renderer.domElement
@@ -33,7 +33,9 @@ class window.ThreeUtil
     cam.z      ||= 3
 
     # Create a camera and add it to the scene
-    @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
+    edgeLen = 20
+    @camera = new THREE.OrthographicCamera( -edgeLen*cam.aspect, edgeLen*cam.aspect, edgeLen, -edgeLen, 1, 1000 )
+    #@camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     @camera.position.set cam.x, cam.y, cam.z
 
     @camera.lookAt({ x: 0, y: 10, z: 0 })

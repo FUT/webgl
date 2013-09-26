@@ -6,7 +6,8 @@ omLoader.load 'model/spruce/spruce.obj', 'model/spruce/spruce.mtl', (spruce) ->
 
   addTree = =>
     newspruce = spruce.clone()
-    newspruce.position.set Math.random()*planeSize - planeSize/2, 0, Math.random()*planeSize - planeSize/2
+    newspruce.position.set Math.random()*planeSizeX - planeSizeX/2, 0, 0 #Math.random()*planeSize - planeSize/2
+    newspruce.rotation.y = Math.random() * 100
 
     scale = Math.random() * 0.03 + 0.01
     newspruce.scale.set scale, scale, scale
@@ -14,12 +15,13 @@ omLoader.load 'model/spruce/spruce.obj', 'model/spruce/spruce.mtl', (spruce) ->
     forestGroup.add newspruce
 
   # make forest
-  trees = 10
+  trees = 20
   addTree() for i in [1..trees]
 
 groundMaterial = new THREE.MeshPhongMaterial({ color: 0x3C4C2C })
-window.planeSize = 30
-plane = new THREE.Mesh(new THREE.PlaneGeometry(planeSize, planeSize), groundMaterial)
+window.planeSizeX = 70
+window.planeSizeY = 90
+plane = new THREE.Mesh(new THREE.PlaneGeometry(planeSizeX, planeSizeY), groundMaterial)
 plane.rotation.x = -Math.PI / 2
 plane.receiveShadow = true
 forestGroup.add plane
