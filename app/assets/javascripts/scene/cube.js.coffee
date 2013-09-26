@@ -27,8 +27,9 @@ $ ->
       y: 60
       intensity: 1.5
     camera:
-      z: 50
-      y: 20
+      z: 70
+      y: 40
+      x: 10
     run: ->
       threeUtil.render()
       angleY += 0.01

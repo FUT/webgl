@@ -34,8 +34,8 @@ class window.ThreeUtil
 
     # Create a camera and add it to the scene
     edgeLen = 20
-    @camera = new THREE.OrthographicCamera( -edgeLen*cam.aspect, edgeLen*cam.aspect, edgeLen, -edgeLen, 1, 1000 )
-    #@camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
+    # @camera = new THREE.OrthographicCamera( -edgeLen*cam.aspect, edgeLen*cam.aspect, edgeLen, -edgeLen, 1, 1000 )
+    @camera = new THREE.PerspectiveCamera cam.angle, cam.aspect, cam.min, cam.max
     @camera.position.set cam.x, cam.y, cam.z
 
     @camera.lookAt({ x: 0, y: 10, z: 0 })
