@@ -13,7 +13,7 @@ $ ->
       z: 20
       x: 10
       y: 100
-      intensity: 1.5
+      intensity: 2.5
     camera:
       z: 70
       y: 40

@@ -53,10 +53,12 @@ class window.ThreeUtil
     light.z         || = 1
 
     # Create a directional light to show off the object
-    @light = new THREE.DirectionalLight light.color, light.intensity
+    @light = new THREE.SpotLight light.color, light.intensity
     @light.position.set light.x, light.y, light.z
     @light.castShadow = true
-    @light.shadowDarkness = 0.9
+    @light.shadowDarkness = 0.95
+    @light.shadowMapHeight = 2048
+    @light.shadowMapWidth = 2048
     # @light.shadowCameraVisible = true
 
     aspect = @container.offsetWidth / @container.offsetHeight
