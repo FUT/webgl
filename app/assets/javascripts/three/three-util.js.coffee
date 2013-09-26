@@ -9,8 +9,9 @@ class window.ThreeUtil
     @renderer = new THREE.WebGLRenderer(options.renderer)
     @renderer.setSize @container.offsetWidth, @container.offsetHeight
     @renderer.setClearColor 0xccdcec, 1
+
     @renderer.shadowMapEnabled = true
-    # @renderer.shadowMapSoft = true
+    @renderer.shadowMapSoft = true
 
     @container.appendChild @renderer.domElement
 
@@ -26,7 +27,6 @@ class window.ThreeUtil
 
     cam.angle  ||= 45
     cam.aspect ||= @container.offsetWidth / @container.offsetHeight
-    cam.min    ||= 1
     cam.max    ||= 4000
 
     cam.x      ||= 0
@@ -56,11 +56,11 @@ class window.ThreeUtil
     @light = new THREE.DirectionalLight light.color, light.intensity
     @light.position.set light.x, light.y, light.z
     @light.castShadow = true
-    @light.shadowDarkness = 0.5
-    @light.shadowCameraVisible = true
+    @light.shadowDarkness = 0.9
+    # @light.shadowCameraVisible = true
 
     aspect = @container.offsetWidth / @container.offsetHeight
-    shadowWidth = 30
+    shadowWidth = 40
     # @camera = new THREE.OrthographicCamera( -edgeLen*cam.aspect, edgeLen*cam.aspect, edgeLen, -edgeLen, 1, 1000 )
     @light.shadowCameraRight    =  shadowWidth * aspect
     @light.shadowCameraLeft     = -shadowWidth * aspect

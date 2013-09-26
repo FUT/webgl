@@ -8,8 +8,12 @@ omLoader.load 'model/spruce/spruce.obj', 'model/spruce/spruce.mtl', (spruce) ->
     newspruce = spruce.clone()
     newspruce.position.set (Math.random()*planeSizeX - planeSizeX/2)*0.9, 0, (Math.random()*planeSizeY*0.9- planeSizeY/2)*0.9
     newspruce.rotation.y = Math.random() * 100
-    newspruce.castShadow = true
-    newspruce.receiveShadow = true
+
+    castReceiveShadow = (mesh) ->
+      mesh.castShadow = true
+      mesh.receiveShadow = true
+
+    castReceiveShadow(mesh) for mesh in newspruce.children[0].children
 
     scale = Math.random() * 0.03 + 0.01
     newspruce.scale.set scale, scale, scale
