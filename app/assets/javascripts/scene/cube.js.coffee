@@ -26,7 +26,12 @@ $ ->
       bearGroup.position.y = Math.sin(angleY) * widthY + 14
       bearGroup.position.x = Math.sin(angleX) * widthX
       bearGroup.position.z = Math.sin(angleZ) * widthZ
-      sceneGroup.rotation.y -= -0.01
+
+      bearGroup.rotation.x = -Math.sin(angleX) * 0.3
+      bearGroup.rotation.y = -Math.sin(angleY) * 0.3
+      bearGroup.rotation.z = -Math.sin(angleZ) * 0.3
+
+      sceneGroup.rotation.y -= -0.001
       requestAnimationFrame threeUtil.run
 
   window.sceneGroup  = new THREE.Object3D()
